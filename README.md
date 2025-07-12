@@ -1,6 +1,6 @@
 # Registro de Fútbol - Django Backend
 
-Sistema de gestión de jugadores, equipos, torneos y partidos de fútbol con API REST.
+Sistema de gestión de jugadores, equipos, torneos y partidos de fútbol con API REST. Diseño sencillo, enfocandose en las funcionalidades del backend y el CRUD.
 
 ## Características
 
