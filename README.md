@@ -42,6 +42,8 @@ Sistema de gestión de jugadores, equipos, torneos y partidos de fútbol con API
 
 ## Estructura del Proyecto
 
+
+
 registro_futbol/
 ├── futbol/
 │   ├── migrations/
