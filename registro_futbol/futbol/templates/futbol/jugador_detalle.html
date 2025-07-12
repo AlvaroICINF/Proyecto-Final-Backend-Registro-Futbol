@@ -1,0 +1,42 @@
+{% extends 'futbol/base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4">
+        {% if jugador.foto %}
+            <img src="{{ jugador.foto.url }}" class="img-fluid rounded" alt="{{ jugador.nombre }}">
+        {% else %}
+            <div class="bg-light p-5 text-center rounded">
+                <h3>Sin foto</h3>
+            </div>
+        {% endif %}
+    </div>
+    <div class="col-md-8">
+        <h1>{{ jugador.nombre }}</h1>
+        <table class="table">
+            <tr>
+                <th>Edad:</th>
+                <td>{{ jugador.edad }} años</td>
+            </tr>
+            <tr>
+                <th>Posición:</th>
+                <td>{{ jugador.posicion }}</td>
+            </tr>
+            <tr>
+                <th>Equipo:</th>
+                <td>{{ jugador.equipo }}</td>
+            </tr>
+            <tr>
+                <th>País:</th>
+                <td>{{ jugador.pais }}</td>
+            </tr>
+        </table>
+        
+        <div class="mt-3">
+            <a href="{% url 'jugador_editar' jugador.id %}" class="btn btn-warning">Editar</a>
+            <a href="{% url 'jugador_eliminar' jugador.id %}" class="btn btn-danger">Eliminar</a>
+            <a href="{% url 'jugador_lista' %}" class="btn btn-secondary">Volver a la lista</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

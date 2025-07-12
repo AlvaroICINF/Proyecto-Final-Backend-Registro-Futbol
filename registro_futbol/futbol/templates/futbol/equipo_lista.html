@@ -1,0 +1,32 @@
+{% extends 'futbol/base.html' %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Lista de Equipos</h2>
+    <a href="{% url 'equipo_crear' %}" class="btn btn-primary">Agregar Equipo</a>
+</div>
+
+<div class="row">
+    {% for equipo in equipos %}
+    <div class="col-md-4 mb-3">
+        <div class="card">
+            {% if equipo.escudo %}
+                <img src="{{ equipo.escudo.url }}" class="card-img-top" style="height: 350px; object-fit: cover;">
+            {% else %}
+                <img src="https://ui-avatars.com/api/?name={{ equipo.nombre|urlencode }}&background=dc3545&color=fff&size=350" class="card-img-top" style="height: 350px; object-fit: cover;">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ equipo.nombre }}</h5>
+                <p class="card-text">
+                    <strong>País:</strong> {{ equipo.pais }}<br>
+                    <strong>Entrenador:</strong> {{ equipo.entrenador }}
+                </p>
+                <a href="{% url 'equipo_detalle' equipo.id %}" class="btn btn-info btn-sm">Ver</a>
+                <a href="{% url 'equipo_editar' equipo.id %}" class="btn btn-warning btn-sm">Editar</a>
+                <a href="{% url 'equipo_eliminar' equipo.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

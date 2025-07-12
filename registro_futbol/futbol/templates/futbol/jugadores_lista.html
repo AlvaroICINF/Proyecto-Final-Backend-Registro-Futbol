@@ -1,0 +1,34 @@
+{% extends 'futbol/base.html' %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Lista de Jugadores</h2>
+    <a href="{% url 'jugador_crear' %}" class="btn btn-primary">Agregar Jugador</a>
+</div>
+
+<div class="row">
+    {% for jugador in jugadores %}
+    <div class="col-md-4 mb-3">
+        <div class="card">
+            {% if jugador.foto %}
+                <img src="{{ jugador.foto.url }}" class="card-img-top" style="height: 400px; object-fit: cover;">
+            {% else %}
+                <img src="https://ui-avatars.com/api/?name={{ jugador.nombre|urlencode }}&background=3949ab&color=fff&size=400" class="card-img-top" style="height: 400px; object-fit: cover;">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ jugador.nombre }}</h5>
+                <p class="card-text">
+                    <strong>Edad:</strong> {{ jugador.edad }}<br>
+                    <strong>Posición:</strong> {{ jugador.posicion }}<br>
+                    <strong>Equipo:</strong> {{ jugador.equipo }}<br>
+                    <strong>País:</strong> {{ jugador.pais }}
+                </p>
+                <a href="{% url 'jugador_detalle' jugador.id %}" class="btn btn-info btn-sm">Ver</a>
+                <a href="{% url 'jugador_editar' jugador.id %}" class="btn btn-warning btn-sm">Editar</a>
+                <a href="{% url 'jugador_eliminar' jugador.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

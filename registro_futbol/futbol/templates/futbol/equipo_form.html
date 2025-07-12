@@ -1,0 +1,32 @@
+{% extends 'futbol/base.html' %}
+
+{% block content %}
+<h2>{{ titulo }}</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label class="form-label">Nombre del Equipo</label>
+                {{ form.nombre }}
+            </div>
+            <div class="mb-3">
+                <label class="form-label">País</label>
+                {{ form.pais }}
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label class="form-label">Entrenador</label>
+                {{ form.entrenador }}
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Escudo</label>
+                {{ form.escudo }}
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <a href="{% url 'equipo_lista' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}

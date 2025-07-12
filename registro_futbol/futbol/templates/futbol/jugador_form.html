@@ -1,0 +1,44 @@
+{% extends 'futbol/base.html' %}
+
+{% block content %}
+<h2>{{ titulo }}</h2>
+<div class="alert alert-info">
+    Todos los campos son obligatorios. Puedes subir una foto en formato <strong>.jpeg</strong>, <strong>.jpg</strong> o <strong>.png</strong>.<br>
+    Si no subes una foto, se mostrará un avatar por defecto.
+</div>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label class="form-label">Nombre</label>
+                {{ form.nombre }}
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Edad</label>
+                {{ form.edad }}
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Posición</label>
+                {{ form.posicion }}
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label class="form-label">País</label>
+                {{ form.pais }}
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Equipo</label>
+                {{ form.equipo }}
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Foto</label>
+                {{ form.foto }}
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <a href="{% url 'jugador_lista' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %} 

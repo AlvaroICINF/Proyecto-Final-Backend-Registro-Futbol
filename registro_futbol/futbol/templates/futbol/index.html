@@ -1,0 +1,29 @@
+{% extends 'futbol/base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h1>Bienvenido al Registro de Fútbol</h1>
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Jugadores</h5>
+                        <p class="card-text">Gestiona la información de jugadores</p>
+                        <a href="{% url 'jugador_lista' %}" class="btn btn-primary">Ver Jugadores</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Equipos</h5>
+                        <p class="card-text">Gestiona la información de equipos</p>
+                        <a href="{% url 'equipo_lista' %}" class="btn btn-primary">Ver Equipos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

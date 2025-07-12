@@ -1,0 +1,68 @@
+{% extends 'futbol/base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4">
+        {% if equipo.escudo %}
+            <img src="{{ equipo.escudo.url }}" class="img-fluid rounded" alt="{{ equipo.nombre }}">
+        {% else %}
+            <div class="bg-light p-5 text-center rounded">
+                <h3>Sin escudo</h3>
+            </div>
+        {% endif %}
+    </div>
+    <div class="col-md-8">
+        <h1>{{ equipo.nombre }}</h1>
+        <table class="table">
+            <tr>
+                <th>País:</th>
+                <td>{{ equipo.pais }}</td>
+            </tr>
+            <tr>
+                <th>Entrenador:</th>
+                <td>{{ equipo.entrenador }}</td>
+            </tr>
+            <tr>
+                <th>Número de jugadores:</th>
+                <td>{{ jugadores.count }}</td>
+            </tr>
+        </table>
+        
+        <div class="mt-3">
+            <a href="{% url 'equipo_editar' equipo.id %}" class="btn btn-warning">Editar</a>
+            <a href="{% url 'equipo_eliminar' equipo.id %}" class="btn btn-danger">Eliminar</a>
+            <a href="{% url 'equipo_lista' %}" class="btn btn-secondary">Volver a la lista</a>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-12">
+        <h3>Jugadores del Equipo</h3>
+        {% if jugadores %}
+            <div class="row">
+                {% for jugador in jugadores %}
+                <div class="col-md-4 mb-3">
+                    <div class="card">
+                        {% if jugador.foto %}
+                            <img src="{{ jugador.foto.url }}" class="card-img-top" style="height: 300px; object-fit: cover;">
+                        {% else %}
+                            <img src="https://ui-avatars.com/api/?name={{ jugador.nombre|urlencode }}&background=3949ab&color=fff&size=300" class="card-img-top" style="height: 300px; object-fit: cover;">
+                        {% endif %}
+                        <div class="card-body">
+                            <h6 class="card-title">{{ jugador.nombre }}</h6>
+                            <p class="card-text">
+                                <small>{{ jugador.posicion }} - {{ jugador.edad }} años</small>
+                            </p>
+                            <a href="{% url 'jugador_detalle' jugador.id %}" class="btn btn-sm btn-primary">Ver detalle</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>Este equipo no tiene jugadores registrados.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
